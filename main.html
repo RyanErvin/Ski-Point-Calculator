@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Points Calculator</title>
+    </head>
+
+    <body>
+        <h1>Ski Point Calculator</h1>
+         <form action="JavaScript:Void(0)">
+            <input type="text" id="StartseedVal1" value="StartseedVal">
+            <input type="text" id="StartseedVal2" value="StartseedVal">
+            <input type="text" id="StartseedVal3" value="StartseedVal">
+            <input type="text" id="StartseedVal4" value="StartseedVal">
+            <input type="text" id="StartseedVal5" value="StartseedVal">
+            <input type="text" id="winTime" value="win">
+            <input type="text" id="seedTime1" value="seedTime">
+            <input type="text" id="seedTime2" value="seedTime">
+            <input type="text" id="seedTime3" value="seedTime7">
+            <input type="text" id="seedTime4" value="vseedTime">
+            <input type="text" id="seedTime5" value="seedTime">
+            <input type="text" id="seedVal1" value="seedVal">
+            <input type="text" id="seedVal2" value="seedVal">
+            <input type="text" id="seedVal3" value="seedVal">
+            <input type="text" id="seedVal4" value="seedVal">
+            <input type="text" id="seedVal5" value="seedVal">
+            <input type="text" id="type" value="730Type">
+            <input type="text" id="racerTime" value="racerTime">
+            <input type="submit" onclick="calcScore()">
+        </form>
+        <h2>Penalty Value: <span id="test"></span></h2> 
+        <h2>CTOTAL: <span id="CTOTAL"></span></h2>
+        <h2>ATOTAL: <span id="ATOTAL"></span></h2>
+        <h2>BTOTAL: <span id="BTOTAL"></span></h2>
+        <h2>Race Points: <span id="racePointTest"></span></h2>
+        <h2>Total Points <span id="totalPointsVal"></span></h2>
+
+        <script>
+          
+            
+            function racePoints(rt, wt, type) {
+                let rp=((rt/wt)-1)*type;
+                return parseFloat(rp);
+
+            }
+            function calcScore() {
+                var seedTime1 = document.getElementById('seedTime1').value;
+                var seedTime2 = document.getElementById('seedTime2').value;
+                var seedTime3 = document.getElementById('seedTime3').value;
+                var seedTime4 = document.getElementById('seedTime4').value;
+                var seedTime5 = document.getElementById('seedTime5').value;
+                var seedVal1 = document.getElementById('seedVal1').value;
+                var seedVal2 = document.getElementById('seedVal2').value;
+                var seedVal3 = document.getElementById('seedVal3').value;
+                var seedVal4 = document.getElementById('seedVal4').value;
+                var seedVal5 = document.getElementById('seedVal5').value;
+                var StartseedVal1 = document.getElementById('StartseedVal1').value;
+                var StartseedVal2 = document.getElementById('StartseedVal2').value;
+                var StartseedVal3 = document.getElementById('StartseedVal3').value;
+                var StartseedVal4 = document.getElementById('StartseedVal4').value;
+                var StartseedVal5 = document.getElementById('StartseedVal5').value;
+                var racerTime = document.getElementById('racerTime').value;
+                var type = document.getElementById('type').value;
+                var winTime = document.getElementById('winTime').value;
+                var racerRacePoints = racePoints(racerTime, winTime, type);
+                var c = racePoints(seedTime1,winTime,type)+racePoints(seedTime2,winTime,type)+racePoints(seedTime3,winTime,type)+racePoints(seedTime4,winTime,type)+racePoints(seedTime5,winTime,type);
+                var a = parseFloat(seedVal1)+parseFloat(seedVal2)+parseFloat(seedVal3)+parseFloat(seedVal4)+parseFloat(seedVal5);
+                var b = parseFloat(StartseedVal1)+parseFloat(StartseedVal2)+parseFloat(StartseedVal3)+parseFloat(StartseedVal4)+parseFloat(StartseedVal5);
+                document.getElementById('BTOTAL').innerHTML = b;
+                document.getElementById('ATOTAL').innerHTML = a;
+                min = Math.min(racePoints(seedTime1,winTime,type),racePoints(seedTime2,winTime,type),racePoints(seedTime3,winTime,type),racePoints(seedTime4,winTime,type),racePoints(seedTime5,winTime,type));
+                document.getElementById('CTOTAL').innerHTML = c-min;
+                var cVal = c-min;
+                var hundredTotals = a+b-cVal;
+                var totalPoints = racerRacePoints + parseFloat(hundredTotals/10);
+                document.getElementById('test').innerHTML = parseFloat(hundredTotals/10);
+                document.getElementById('racePointTest').innerHTML = racerRacePoints;
+                document.getElementById('totalPointsVal').innerHTML = totalPoints;
+
+            }
+            
+          //var visible = false;
+           // function activate() {
+           // visible = true;
+          // }
+
+           //if (visible) {
+  
+          // }
+        </script>
+    </body>
+</html>
